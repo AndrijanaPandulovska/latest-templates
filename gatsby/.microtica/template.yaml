@@ -1,0 +1,27 @@
+name: Gatsby
+description: Gatsby enables developers to build fast, secure, and powerful websites using a React-based framework and innovative data layer that makes integrating different content, APIs, and services into one web experience incredibly simple.
+logo: https://microtica.s3.eu-central-1.amazonaws.com/assets/templates/logos/gatsby.png
+repo: https://github.com/microtica/templates/tree/master/gatsby
+
+inputs:
+  properties:
+    AppName:
+      type: string
+      description: The name of the application. The name will be shown in the portal.
+      maxLength: 23
+      pattern: ^[a-z]*$
+      patternErrorMessage: "The app name can contain only lowercase letters."
+  required:
+  - AppName
+  
+service:
+  "{{AppName}}":
+    source: git
+    containerPort: "{{CONTAINER_PORT}}"
+    autoScaling:
+      minReplicas: 1
+      maxReplicas: 1
+      cpu: 1
+      maxCpu: 20
+      memory: 128
+      maxMemory: 250
